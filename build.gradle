@@ -1,0 +1,25 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.2.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.test'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.json:json:20180813'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+	impementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	impementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	impementation 'org.springframework.boot:spring-boot-starter-config:2.1.0.RELEASE'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+}
