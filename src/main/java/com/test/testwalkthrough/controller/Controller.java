@@ -17,7 +17,7 @@ public class Controller {
     @Autowired
     private DataService service;
 
-    @GetMapping("/test")
+    @GetMapping("/testLocal")
     public ResponseEntity<List<Returning>> runThis(){
 
         return new ResponseEntity<>(service.getList(), HttpStatus.OK);

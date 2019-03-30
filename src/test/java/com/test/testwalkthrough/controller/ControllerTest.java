@@ -44,7 +44,7 @@ public class ControllerTest {
 
     @Test
     public void testFail() throws Exception {
-        mvc.perform(MockMvcRequestBuilders.get("/test").accept(MediaType.APPLICATION_JSON))
+        mvc.perform(MockMvcRequestBuilders.get("/testLocal").accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }

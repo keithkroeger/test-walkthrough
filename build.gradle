@@ -2,8 +2,14 @@ buildscript {
 	repositories {
 		mavenCentral()
 	}
+	ext{
+		verifier_version = '2.1.0.RELEASE'
+	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.0.RELEASE")
+		classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:${verifier_version}"
+		classpath "com.jayway.restassured:rest-assured:2.5.0"
+		classpath "com.jayway.restassured:spring-mock-mvc:2.5.0"
 	}
 }
 
@@ -17,6 +23,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'spring-cloud-contract'
 
 group = 'com.test'
 version = '0.0.1-SNAPSHOT'
@@ -39,11 +46,19 @@ dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-data-rest'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	compile fileTree(dir: 'libs', include: '*.jar')
+	testCompile 'org.springframework.cloud:spring-cloud-starter-contract-verifier'
+	testCompile 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner'
+	testCompile 'org.springframework.cloud:spring-cloud-contract-wiremock'
+	testCompile "com.jayway.restassured:rest-assured:2.5.0"
+	testCompile "com.jayway.restassured:spring-mock-mvc:2.5.0"
+
 }
 
 
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+		mavenBom "org.springframework.cloud:spring-cloud-contract-dependencies:${verifier_version}"
 	}
 }
