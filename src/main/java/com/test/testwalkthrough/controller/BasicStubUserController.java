@@ -23,7 +23,21 @@ public class BasicStubUserController {
         httpHeaders.add("Content-Type", "application/json");
 
         ResponseEntity<String> responseEntity = restTemplate.exchange(
-                "http://localhost:8090/test/",
+                "http://localhost:8090/test2",
+                HttpMethod.GET,
+                new HttpEntity<>(httpHeaders),
+                String.class);
+
+        return responseEntity.getBody();
+    }
+
+    @GetMapping("/testForwarder/")
+    public String getTest2() {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add("Content-Type", "application/json");
+
+        ResponseEntity<String> responseEntity = restTemplate.exchange(
+                "http://localhost:8090/test",
                 HttpMethod.GET,
                 new HttpEntity<>(httpHeaders),
                 String.class);

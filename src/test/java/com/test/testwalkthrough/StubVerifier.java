@@ -37,5 +37,14 @@ public class StubVerifier {
                 .andExpect(status().isOk())
                 .andExpect(content().string("Hello, is it me you're looking for?"));
     }
+    @Test
+    public void testThroughController2()
+            throws Exception {
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/testForwarder/")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{\"status\":\"Hello, is it me you're looking for?\"}"));
+    }
 
 }
